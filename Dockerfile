@@ -14,6 +14,7 @@ WORKDIR /sec
 COPY --from=unittest /unittest/test ./test
 RUN echo "Security Functions Running" >> ./test
 
+RUN apk add --update docker openrc
 RUN docker build -t report -f ReportsDockerFile
 
 FROM reports:latest as emailreports
