@@ -14,7 +14,7 @@ WORKDIR /sec
 COPY --from=unittest /unittest/test ./test
 RUN echo "Security Functions Running" >> ./test
 
-# docker build -t reports:1 -t reports .
+# docker build -t reports:1 -t reports -f ReportsDockerFile  .
 FROM reports:latest as emailreports
 WORKDIR /emailsrep
 COPY --from=securitycheck /sec/test ./test
