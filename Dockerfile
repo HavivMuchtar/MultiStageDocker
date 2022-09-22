@@ -11,12 +11,12 @@ RUN echo "Unittest Functions Running" > ./test
 
 FROM alpine:latest as securitycheck
 WORKDIR /sec
-COPY --from=unittest /builder/test ./test
+COPY --from=unittest /unittest/test ./test
 RUN echo "Security Functions Running" >> ./test
 
 FROM alpine:latest as emailreports
 WORKDIR /emailsrep
-COPY --from=securitycheck /builder/test ./test
+COPY --from=securitycheck /sec/test ./test
 RUN echo "Sending Emails Function Running" >> ./test
 
 FROM alpine:latest as webapp
