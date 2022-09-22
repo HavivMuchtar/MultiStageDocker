@@ -1,6 +1,7 @@
 FROM python:latest as builder
 WORKDIR /builder
 COPY ./test ./test
+COPY ./srccode/* ./srccode
 RUN echo "Building App"
 
 FROM alpine:latest as unittest
@@ -20,5 +21,5 @@ RUN echo "Sending Emails Function Running" >> ./test
 
 FROM alpine:latest as webapp
 WORKDIR /app
-COPY --from=builder /builder/test ./test
-RUN cat ./test
+COPY --from=builder /builder/srccode/*.py .
+RUN ls ./
