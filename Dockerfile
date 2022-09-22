@@ -1,7 +1,7 @@
 FROM python:latest as builder
 WORKDIR /builder
 COPY ./test ./test
-COPY ./srccode/* ./srccode
+COPY ./srccode/* ./srccode/
 RUN echo "Building App"
 
 FROM alpine:latest as unittest
