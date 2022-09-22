@@ -14,10 +14,12 @@ WORKDIR /sec
 COPY --from=unittest /unittest/test ./test
 RUN echo "Security Functions Running" >> ./test
 
-FROM alpine:latest as emailreports
+RUN docker build -t report -f ReportsDockerFile
+
+FROM reports:latest as emailreports
 WORKDIR /emailsrep
-COPY --from=securitycheck /sec/test ./test
-RUN echo "Sending Emails Function Running" >> ./test
+#COPY --from=securitycheck /sec/test ./test
+#RUN echo "Sending Emails Function Running" >> ./test
 
 FROM alpine:latest as webapp
 WORKDIR /app
