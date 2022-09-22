@@ -1,2 +1,3 @@
 FROM alpine:latest as emailreports
 WORKDIR /emailsrep
+RUN echo "In Email Reports Image"
